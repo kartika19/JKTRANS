@@ -17,10 +17,29 @@
 <body>
    <div class="container pt-5">
     <h1>TAMBAH DATA REKAPAN</h1>
+     <?php
+     include('koneksi.php');
+            
+        $quey= mysqli_query($kon, "SELECT max(id) as kode FROM rekap");
+        $data=mysqli_fetch_array($quey);
+        $kode1 =$data['kode'];
+        $urut = (int) substr($kode1, 3,3);
+        $urut++;
 
+        $huruf = "ID";
+        $kodenew = $huruf.sprintf("%03s",$urut);
+
+
+        ?>
+         
      <form method="POST" action="">
       <div class="form-group row">
-         
+        <label for="nama" class="col-sm-2 col-form-label">ID</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" placeholder="Id" name="id" readonly value='<?php echo  $kodenew ?>'>
+        </div>
+      </div>
+      <div class="form-group row">
         <label for="kode" class="col-sm-2 col-form-label">Kode</label>
         <div class="col-sm-10">
           <input type="number" class="form-control" placeholder="Kode"  name="kode_rekap" required="">
@@ -73,7 +92,7 @@
 <?php
  include("koneksi.php");
  if(isset($_POST["tambah"])){
-   
+      $id=$_POST['id'];
      $kode_rekap= $_POST['kode_rekap'];
      $colli= $_POST['colli'];
      $berat= $_POST['berat'];
@@ -81,13 +100,7 @@
      $nama_penerima= $_POST['nama_penerima'];
      $keterangan= $_POST['keterangan'];
 
-      $query= mysqli_query($kon, "SELECT max(id) as kode FROM rekap");
-        $data=mysqli_fetch_array($query);
-        $kodenew =$data['kode'];
-        $urut = (int) substr($kodenew, 3,3);
-        $urut++;
-    
-        $id = sprintf("%03s",$urut);
+
  $query= "INSERT INTO rekap SET
                           id='$id',
                           kode_rekap='$kode_rekap',
@@ -97,9 +110,10 @@
                           penerima='$nama_penerima',
                           keterangan='$keterangan'
                       ";
-   echo $query."<br>";   
+  // echo $query."<br>";   
 $sql=mysqli_query($kon,$query);
-    if($query){
+//var_dump($sql);
+   if($query){
            echo "<script>alert('Berhasil Menambah Produk!');document.location.href='index.php';</script>"; 
     }else{
           echo "<script>alert('Gagal Tambah Data');history.go(-1);</script>";

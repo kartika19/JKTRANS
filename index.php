@@ -39,13 +39,17 @@
          $query_mysqli = mysqli_query($kon,"SELECT * FROM rekap")or die(mysqli_error());
          $nomor = 1;
          while($data = mysqli_fetch_array($query_mysqli)){
+          $sd=$data['confrankert'];
+          $p21 = number_format($sd,'0','.','.');
+          $b=$data['berat'];
+          $berat = number_format($b,'0','.','.');
          ?>
                <tr>
                    <td> <?php echo $nomor++; ?></td>
                    <td> <?php echo $data['kode_rekap']; ?></td>
                    <td> <?php echo $data['colli']; ?></td>
-                   <td> <?php echo $data['berat']; ?></td>
-                   <td> <?php echo $data['confrankert']; ?></td>
+                   <td> <?php echo $berat; ?></td>
+                   <td> <?php echo $p21; ?></td>
                    <td> <?php echo $data['penerima']; ?></td>
                    <td> <?php echo $data['keterangan']; ?></td>
                    <td class="text-center">
