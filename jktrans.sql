@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Mar 2021 pada 01.26
+-- Waktu pembuatan: 03 Mar 2021 pada 02.27
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 7.3.27
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `rekap` (
-  `id` int(11) NOT NULL,
+  `id` varchar(11) NOT NULL,
   `kode_rekap` varchar(6) NOT NULL,
   `colli` varchar(100) NOT NULL,
   `berat` varchar(100) NOT NULL,
@@ -42,7 +42,8 @@ CREATE TABLE `rekap` (
 --
 
 INSERT INTO `rekap` (`id`, `kode_rekap`, `colli`, `berat`, `confrankert`, `penerima`, `keterangan`) VALUES
-(1, '1', '5', '160', '150000', 'CV.Proyek Indo', 'Sukses');
+('ID001', '29630', '1', '160', '150000', 'CV.Proyek Indo', 'Sukses'),
+('ID002', '29672', '5', '100', '90000', '88', 'Sukses');
 
 --
 -- Indexes for dumped tables
@@ -53,16 +54,6 @@ INSERT INTO `rekap` (`id`, `kode_rekap`, `colli`, `berat`, `confrankert`, `pener
 --
 ALTER TABLE `rekap`
   ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT untuk tabel yang dibuang
---
-
---
--- AUTO_INCREMENT untuk tabel `rekap`
---
-ALTER TABLE `rekap`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
